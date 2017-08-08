@@ -1,0 +1,159 @@
+package hongkongpayee;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+public class Hongkongpayee {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\selenium-java-3.4.0\\chromedriver\\chromedriver.exe");
+		WebDriver d = new ChromeDriver();
+		Actions act1 = new Actions(d);
+		Actions act2 = new Actions(d);
+		Actions act3 = new Actions(d);
+		Actions act4 = new Actions(d);
+		Actions act5 = new Actions(d);
+	 	d.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		d.get("http://staging.instarem.com");
+		d.manage().window().maximize();
+		Thread.sleep(10000);
+		WebElement login = d.findElement(By.xpath (".//*[@id='aSignIn']"));
+		login.click();
+		Thread.sleep(5000);
+		WebElement email = d.findElement(By.xpath(".//*[@id='UserName']"));
+		email.sendKeys("auuser7@instarem.com");
+		Thread.sleep(1000);
+		WebElement pwd = d.findElement(By.xpath(".//*[@id='Password']"));
+		pwd.sendKeys("Abc@123");
+		WebElement login1 = d.findElement(By.xpath(".//*[@id='InstaValidate']"));
+		login1.click();
+		Thread.sleep(9000);
+		
+		d.findElement(By.xpath(".//*[@id='sourceoffund']/a")).click();
+		act1.moveToElement(d.findElement(By.xpath(".//*[@id='sourceoffund']/a"))).build().perform();
+		Thread.sleep(3000);
+		List<WebElement> sourceoffunds =d.findElements(By.tagName("li"));
+		for (WebElement li : sourceoffunds) {
+			if (li.getText().equals("INVESTMENTS")) {
+			     li.click();
+			   }
+			}
+		
+		Thread.sleep(2000);
+		WebElement submit =d.findElement(By.id("transSubmit"));
+		submit.click();
+		Thread.sleep(2000);
+		
+		//d.findElement(By.id("toPayeeLink")).click();
+		//act2.moveToElement(d.findElement(By.id("toPayeeLink"))).build().perform();
+		//Thread.sleep(1000);
+		//List<WebElement> country1 =d.findElements(By.tagName("li"));
+		//for (WebElement li : country1) {
+			//if (li.getText().equals("HONG KONG")) {
+			  //   li.click();
+			  // }
+			//}
+		
+		Thread.sleep(5000);
+		
+		WebElement firstname = d.findElement(By.xpath(".//*[@id='txtFirstName']"));
+		firstname.sendKeys("asim");
+		Thread.sleep(3000);
+		WebElement lastname = d.findElement(By.xpath(".//*[@id='txtLastName']"));
+		lastname.sendKeys("testingapp");
+		Thread.sleep(3000);
+		WebElement email2 = d.findElement(By.xpath(".//*[@id='txtEmail']"));
+		email2.sendKeys("asemtestingapp3@instarem.com");
+		Thread.sleep(3000);
+		
+		
+		d.findElement(By.xpath(".//*[@id='ddlstatePayee']/a")).click();
+		act3.moveToElement(d.findElement(By.xpath(".//*[@id='ddlstatePayee']/a"))).build().perform();
+		Thread.sleep(3000);
+		List<WebElement> district =d.findElements(By.tagName("li"));
+		for (WebElement li : district) {
+			if (li.getText().equals("KOWLOON")) {
+			     li.click();
+			   }
+			}
+		
+		Thread.sleep(2000);
+		
+		WebElement city = d.findElement(By.xpath(".//*[@id='Payeecity']"));
+		city.click();
+		city.sendKeys("MUMBAI");
+		Thread.sleep(1000);
+		WebElement streetaddress = d.findElement(By.xpath(".//*[@id='PayeeAddress']"));
+		streetaddress.sendKeys("1192");
+		Thread.sleep(1000);
+		WebElement mono = d.findElement(By.xpath(".//*[@id='txtMobile']"));
+		mono.sendKeys("99887765");
+		Thread.sleep(2000);
+		
+		d.findElement(By.xpath(".//*[@id='ddlRelation']/a")).click();
+		act4.moveToElement(d.findElement(By.xpath(".//*[@id='ddlRelation']/a"))).build().perform();
+		Thread.sleep(3000);
+		List<WebElement> relation =d.findElements(By.tagName("li"));
+		for (WebElement li : relation) {
+			if (li.getText().equals("Friend")) {
+			     li.click();
+			   }
+			}
+		
+		Thread.sleep(3000);
+		WebElement ifsc = d.findElement(By.xpath(".//*[@id='txtIFSC']"));
+		ifsc.click();
+		ifsc.sendKeys("HSBCHKHH");
+		Thread.sleep(2000);
+		WebElement bankname = d.findElement(By.xpath(".//*[@id='txtBank']"));
+		bankname.click();
+		bankname.sendKeys("HSBC");
+		Thread.sleep(2000);
+		WebElement accno = d.findElement(By.xpath(".//*[@id='txtAccntNo']"));
+		accno.sendKeys("11111122227");
+		Thread.sleep(3000);
+		WebElement accno2 = d.findElement(By.xpath(".//*[@id='txtReAccntNo']"));
+		accno2.sendKeys("11111122227");
+		
+		Thread.sleep(3000);
+		
+		d.findElement(By.xpath(".//*[@id='PurposeCode']/a")).click();
+		act5.moveToElement(d.findElement(By.xpath(".//*[@id='PurposeCode']/a"))).build().perform();
+		Thread.sleep(3000);
+		List<WebElement> purpose =d.findElements(By.tagName("li"));
+		for (WebElement li : purpose) {
+			if (li.getText().equals("INSURANCE PREMIUM")) {
+			     li.click();
+			   }
+			}
+		
+		Thread.sleep(3000);
+		
+		WebElement firstsubmitbutton = d.findElement(By.xpath(".//*[@id='btnSave']"));
+		firstsubmitbutton.click();
+		Thread.sleep(3000);
+		WebElement banktransfer = d.findElement(By.xpath(".//*[@id='A8']"));
+		banktransfer.click();
+		Thread.sleep(3000);
+		WebElement submitbutton = d.findElement(By.xpath (".//*[@id='btnMakePayment']"));
+		submitbutton.click();
+		Thread.sleep(3000);
+		WebElement internalpopup = d.findElement(By.xpath(".//*[@id='aMakePayment']"));
+		internalpopup.click();
+		Thread.sleep(3000);
+		
+		
+		
+	}
+
+}
